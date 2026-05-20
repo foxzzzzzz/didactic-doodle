@@ -2,6 +2,7 @@
 
 读取店铺对应的 markdown 文件，拼接为文本供 LLM prompt 使用。
 Phase 1 采用全文加载策略，不做智能切片。
+Phase 2 TODO: 语义检索替代全量加载，按客户问题匹配相关内容，节省 token。
 """
 
 from pathlib import Path

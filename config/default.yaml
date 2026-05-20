@@ -1,0 +1,61 @@
+# ============================================================
+# 拼多多智能客服系统 - 默认配置
+# ============================================================
+
+app:
+  name: "拼多多智能客服系统"
+  version: "0.1.0"
+  phase: 1
+  shop_id: "shop_001"
+
+screenshot:
+  interval: 1.5
+  save_debug: false
+  debug_dir: "./data/screenshots"
+
+ocr:
+  confidence_threshold: 0.7
+  use_gpu: false
+
+template_matching:
+  threshold: 0.8
+
+llm:
+  provider: "minimax"
+  api_key: "${MINIMAX_API_KEY}"
+  model: "M2.7"
+  base_url: "https://api.minimax.chat/v1"
+  timeout: 15
+  max_retries: 3
+  temperature: 0.7
+  max_output_tokens: 500
+
+knowledge_base:
+  base_path: "./knowledge_base"
+  max_chars: 3000
+
+context:
+  max_history_rounds: 20
+  retention_days: 3
+  session_idle_minutes: 30
+
+action:
+  type_delay: 0.05
+  click_delay: 0.3
+  random_delay_range:
+    - 0.5
+    - 1.5
+
+operator:
+  debug_mode: false
+  demo_mode: false
+
+logging:
+  level: "INFO"
+  file: "./data/logs/pdd_cs.log"
+  max_size_mb: 10
+  backup_count: 5
+
+monitoring:
+  health_check_interval: 60
+  target_process: "拼多多商家工作台.exe"

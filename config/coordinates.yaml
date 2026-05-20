@@ -1,0 +1,40 @@
+# ============================================================
+# 屏幕坐标配置 - 根据实际截图校准
+# 使用 tools/calibrate.py 辅助校准
+# ============================================================
+
+window:
+  offset_x: 0
+  offset_y: 0
+
+chat_area:
+  x: 380
+  y: 120
+  width: 820
+  height: 580
+
+input_box:
+  x: 380
+  y: 720
+  width: 760
+  height: 80
+
+send_button:
+  x: 1140
+  y: 720
+  width: 60
+  height: 80
+
+send_button_center:
+  x: 1170
+  y: 760
+
+input_box_center:
+  x: 760
+  y: 760
+
+templates:
+  directory: "./docs/templates"
+  send_button: "send_button.png"
+  input_box: "input_box.png"
+  unread_badge: "unread_badge.png"

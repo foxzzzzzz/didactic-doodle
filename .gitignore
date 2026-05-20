@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual env
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Runtime data
+data/
+*.db
+*.sqlite3
+
+# Local config overrides
+config/*.local.yaml
+.env
+*.env.local
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# PaddleOCR models
+.paddleocr/

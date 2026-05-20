@@ -22,8 +22,8 @@ template_matching:
 
 llm:
   provider: "minimax"
-  api_key: ""                     # 在此填入 MiniMax API 密钥
-  model: "M2.7"
+  api_key: "sk-cp-knWm7hpdema9iv-BYTrK6Dc986T2o7Ie0EY2c8vavTeegl0myXrqke4r1k2JWfeC38eP9kwt-0LHddJveySg_03g7hmyYEuvjC0HjKgkPLeHMuN017qNptY"                     # 在此填入 MiniMax API 密钥
+  model: "minimax-m2.7"
   base_url: "https://api.minimax.chat/v1"
   timeout: 15
   max_retries: 3

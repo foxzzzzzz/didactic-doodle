@@ -26,7 +26,7 @@ class TemplateMatchingConfig:
 class LLMConfig:
     provider: str = "minimax"
     api_key: str = ""
-    model: str = "M2.7"
+    model: str = "minimax-m2.7"
     base_url: str = "https://api.minimax.chat/v1"
     timeout: int = 15
     max_retries: int = 3

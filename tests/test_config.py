@@ -29,5 +29,5 @@ def test_config_loads_with_defaults():
     config = ConfigLoader.load("./config")
     assert isinstance(config, AppConfig)
     assert config.shop_id == "shop_001"
-    assert config.llm.model == "M2.7"
+    assert config.llm.model == "minimax-m2.7"
     assert config.screenshot.interval == 1.5

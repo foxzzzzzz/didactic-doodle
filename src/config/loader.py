@@ -172,7 +172,7 @@ class ConfigLoader:
             llm=LLMConfig(
                 provider=llm.get("provider", "minimax"),
                 api_key=llm.get("api_key", ""),
-                model=llm.get("model", "M2.7"),
+                model=llm.get("model", "minimax-m2.7"),
                 base_url=llm.get("base_url", "https://api.minimax.chat/v1"),
                 timeout=llm.get("timeout", 15),
                 max_retries=llm.get("max_retries", 3),

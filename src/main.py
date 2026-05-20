@@ -35,8 +35,8 @@ def main() -> None:
 
     # 检查 API Key
     if not config.llm.api_key and not config.operator.demo_mode:
-        print("[ERROR] 未设置 MINIMAX_API_KEY 环境变量")
-        print("  set MINIMAX_API_KEY=your_key")
+        print("[ERROR] 未配置 LLM API Key")
+        print("  请在 config/default.yaml 的 llm.api_key 字段中填入密钥")
         print("  或启用 operator.demo_mode=true 进入演示模式")
         sys.exit(1)
 

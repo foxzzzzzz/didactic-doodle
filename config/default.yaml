@@ -22,7 +22,7 @@ template_matching:
 
 llm:
   provider: "minimax"
-  api_key: "${MINIMAX_API_KEY}"
+  api_key: ""                     # 在此填入 MiniMax API 密钥
   model: "M2.7"
   base_url: "https://api.minimax.chat/v1"
   timeout: 15

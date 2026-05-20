@@ -66,6 +66,7 @@ class Phase1Orchestrator:
         self._customer_nickname: str = "unknown"
         self._rounds_processed: int = 0
         self._refund_sessions: set = set()  # 已标记转人工的会话集合
+        self._kb_cache: Optional[str] = None  # 知识库全文缓存，首轮加载后复用
 
     # ---- 主循环 ----
 
@@ -152,10 +153,12 @@ class Phase1Orchestrator:
             session_id=session_id,
             retention_days=self._config.context.retention_days,
         )
-        kb_text = self._kb.load_all(
-            self._config.shop_id,
-            max_chars=self._config.knowledge_base.max_chars,
-        )
+        if self._kb_cache is None:
+            self._kb_cache = self._kb.load_all(
+                self._config.shop_id,
+                max_chars=self._config.knowledge_base.max_chars,
+            )
+        kb_text = self._kb_cache
 
         # 5. 组装 prompt 并调用 LLM
         system_prompt = build_system_prompt(

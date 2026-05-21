@@ -161,6 +161,9 @@ class ConfigLoader:
         monitoring = config.get("monitoring", {})
 
         return AppConfig(
+            name=app.get("name", "拼多多智能客服系统"),
+            version=app.get("version", "0.1.0"),
+            phase=app.get("phase", 1),
             shop_id=app.get("shop_id", "shop_001"),
             screenshot=ScreenshotConfig(
                 interval=screenshot.get("interval", 1.5),

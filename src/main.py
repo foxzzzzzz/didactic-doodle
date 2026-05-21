@@ -12,7 +12,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.config.loader import ConfigLoader
 from src.vision.screenshot import ScreenCapture
 from src.vision.ocr import OcrEngine
-from src.vision.template import TemplateMatcher
 from src.llm.client import MiniMaxClient
 from src.knowledge.loader import KnowledgeBase
 from src.action.operator import UIOperator
@@ -26,12 +25,12 @@ def main() -> None:
     """程序入口：初始化所有模块 → 启动 Phase 1 主循环。"""
 
     # 1. 加载配置
+    config = ConfigLoader.load("./config")
+
     print("=" * 50)
-    print("  拼多多智能客服系统 v0.1.0 (Phase 1)")
+    print(f"  {config.name} v{config.version} (Phase {config.phase})")
     print("=" * 50)
     print()
-
-    config = ConfigLoader.load("./config")
 
     # 检查 API Key
     if not config.llm.api_key and not config.operator.demo_mode:
@@ -52,7 +51,6 @@ def main() -> None:
     print("初始化各模块...")
     capture = ScreenCapture(config.coordinates)
     ocr_engine = OcrEngine(config.ocr)
-    template_matcher = TemplateMatcher(config.template_matching.threshold)
     llm_client = MiniMaxClient(config.llm)
     operator = UIOperator(config.action, config.coordinates)
     kb = KnowledgeBase(config.knowledge_base.base_path)
@@ -60,7 +58,7 @@ def main() -> None:
     db.init_db()
     ctx = SessionContext(db, config.context.max_history_rounds)
 
-    print(f"  店铺: {config.shop_id}")
+    print(f"  店铺: {config.name} ({config.shop_id})")
     print(f"  LLM: {config.llm.provider}/{config.llm.model}")
     print(f"  模式: {'演示模式' if config.operator.demo_mode else '正常模式'}")
     if config.operator.debug_mode:

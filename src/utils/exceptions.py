@@ -63,6 +63,6 @@ class ClickError(ActionError):
     pass
 
 
-class TypeError(ActionError):
+class TypeActionError(ActionError):
     """键盘输入失败。"""
     pass

@@ -102,6 +102,9 @@ class Coordinates:
 @dataclass
 class AppConfig:
     """应用总配置。"""
+    name: str = "拼多多智能客服系统"
+    version: str = "0.1.0"
+    phase: int = 1
     shop_id: str = "shop_001"
     screenshot: ScreenshotConfig = field(default_factory=ScreenshotConfig)
     ocr: OcrConfig = field(default_factory=OcrConfig)

@@ -12,12 +12,11 @@ from typing import Optional
 from ..config.schema import AppConfig
 from ..vision.screenshot import ScreenCapture
 from ..vision.ocr import OcrEngine
-from ..vision.template import TemplateMatcher
 from ..llm.client import BaseLLMClient, LLMMessage
 from ..llm.prompt import build_system_prompt, build_user_message, parse_llm_response
 from ..knowledge.loader import KnowledgeBase
 from ..action.operator import UIOperator
-from ..memory.database import Database, ConversationRecord
+from ..memory.database import Database
 from ..memory.context import SessionContext
 from ..utils.exceptions import LLMError, OcrError, VisionError
 from ..utils.logger import setup_logger
@@ -73,7 +72,7 @@ class Phase1Orchestrator:
     def run(self) -> None:
         """启动主循环。按 Ctrl+C 停止。"""
         self._logger.info("=" * 50)
-        self._logger.info("拼多多智能客服系统 Phase %d 启动", self._config.shop_id)
+        self._logger.info("拼多多智能客服系统 Phase %s 启动", self._config.version)
         self._logger.info("店铺: %s", self._config.shop_id)
         self._logger.info("=" * 50)
 

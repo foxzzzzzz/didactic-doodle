@@ -5,8 +5,9 @@ PaddleOCR 初始化耗时较长（1-3 秒），使用单例模式，程序启动
 """
 
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List, Optional, Union
 
+import numpy as np
 from PIL import Image
 
 from ..config.schema import OcrConfig
@@ -56,15 +57,21 @@ class OcrEngine:
         self._conf_threshold = config.confidence_threshold
         self._initialized = True
 
-    def recognize(self, image: Image.Image) -> List[OCRResult]:
+    def recognize(self, image: Union[Image.Image, np.ndarray]) -> List[OCRResult]:
         """识别图片中的全部文字。
 
         Args:
-            image: PIL Image 对象。
+            image: PIL Image 或 numpy 数组 (H, W, C) RGB/BGR 格式。
 
         Returns:
             OCRResult 列表，按阅读顺序（先上后下，先左后右）排列。
         """
+        if isinstance(image, Image.Image):
+            image = np.array(image)
+
+        if not isinstance(image, np.ndarray):
+            raise OcrError(f"OCR 输入类型错误，期望 PIL Image 或 numpy 数组，实际: {type(image)}")
+
         results = self._ocr.ocr(image, cls=True)
 
         if not results or not results[0]:

@@ -104,8 +104,9 @@ class ConfigLoader:
 
     加载顺序（后者覆盖前者）：
     1. default.yaml （基础配置）
-    2. coordinates.yaml （坐标配置）
-    3. *.local.yaml （本地覆盖，gitignored）
+    2. default.local.yaml （本地密钥覆盖，gitignored）
+    3. coordinates.yaml （坐标配置）
+    4. *.local.yaml （本地坐标覆盖，gitignored）
     """
 
     @staticmethod
@@ -130,6 +131,10 @@ class ConfigLoader:
         config = _load_yaml(base / "default.yaml")
         if not config:
             raise ConfigError(f"主配置文件为空或不存在: {base / 'default.yaml'}")
+
+        # 合并本地主配置覆盖（api_key 等敏感信息）
+        main_local = _load_yaml(base / "default.local.yaml")
+        config = _deep_merge(config, main_local)
 
         # 合并坐标配置
         coords = _load_yaml(base / "coordinates.yaml")
